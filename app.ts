@@ -48,3 +48,62 @@ function multiply(value1: number, value2: number): number {
 
 // console.log(multiply(2, 'G'));
 console.log(multiply(2, 10 ));
+
+// function types
+let myMultiply: (val1: number, val2: number) => number;
+// myMultiply = sayHello;
+// myMultiply();
+myMultiply = multiply;
+console.log(myMultiply(5, 2));
+
+// objects
+
+let complex: {data: number[], output: (all: boolean) => number[]} = {
+    data: [100, 3.99, 10],
+    output: function (all: boolean): number[] {
+        return this.data
+    }
+};
+
+// type alias
+
+type Complex = {
+    data: number[],
+    output: (all: boolean) => number[]
+}
+
+let complex2: Complex = {
+    data: [100, 3.99, 10],
+    output: function (all: boolean): number[] {
+        return this.data
+    }
+};
+
+// complex = {};
+
+// union types
+let myRealRealAge: number | string = 26; // либо число либо строка
+myRealRealAge = '26';
+// myRealRealAge = true;
+
+// check types
+
+let finalValue = 26;
+if (typeof finalValue == 'number') {
+    console.log(666);
+}
+
+// never
+function neverReturns(): never {
+    console.log(123123);
+    throw new Error('An error!')
+}
+
+// Nullable types
+let canBeNull: number | null = 12;
+canBeNull = null;
+let alsoCanBeNull;
+alsoCanBeNull = null;
+let thisAnotherNull = null; // ????
+thisAnotherNull = 12;
+
