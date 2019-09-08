@@ -5,6 +5,7 @@
   "main": "app.js",
   "dependencies": {
     "lite-server": "^2.5.4",
+    "systemjs": "^6.0.0",
     "typescript": "^3.5.3"
   },
   "devDependencies": {},
