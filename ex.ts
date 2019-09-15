@@ -1,77 +1,37 @@
-class Car {
-    name: string;
-    acceleration: number = 0;
+// Let's keep it simple and only add the following methods to the Map:
 
-    constructor(name: string) {
-        this.name = name;
+// setItem(key: string, item: T) // should create a new key-value pair
+
+// getItem(key: string) // should retrieve the value of the provided key
+// clear() // should remove all key-value pairs
+// printMap() // should output key-value pairs
+// The map should be usable like shown below:
+
+class MyMap<T extends number | string> {
+    arr = new Map();
+    setItem(key: string, val: T): void {
+        this.arr.set(key, val)
     }
-
-    honk() {
-        console.log("Toooooooooot!");
+    printMap(): void {
+        // for (let [key, val] of this.arr.entries()) {
+        //     console.log(key + ' = ' + val);
+        // }
+        this.arr.forEach((val, key)=>console.log(key + ' = ' + val));
     }
-
-    accelerate(speed: number) {
-        this.acceleration = this.acceleration + speed
+    getItem(key: string): void {
+        this.arr.get(key);
     }
-}
-
-const car = new Car("BMW");
-car.honk();
-console.log(car.acceleration);
-car.accelerate(10);
-console.log(car.acceleration);
-
-// const baseObject: {width: number, length: number} = {
-//     width: 0,
-//     length: 0
-// };
-
-class BaseObject {
-    width: number = 0;
-    length: number = 0;
-}
-
-const baseObject = new BaseObject();
-console.log(baseObject);
-class Rectangle extends BaseObject {
-    // width = 5;
-    // length = 2;
-    //
-    // constructor() {
-    //     super();
-    // }
-
-    calcSize(): number {
-        return this.width * this.length
-    }
-}
-const rectangle = new Rectangle();
-rectangle.width = 5;
-rectangle.length = 2;
-console.log(rectangle.calcSize());
-
-///////////////////////
-
-class Person {
-    private _firstName: string = '';
-
-    get firstName() {
-        return this._firstName;
-    }
-
-    set firstName(value: string) {
-        if (value.length > 3) {
-            this._firstName = value;
-        }
-        else {
-            this._firstName = "";
-        }
+    clear(): void {
+        this.arr.clear();
     }
 }
 
-const person = new Person();
-console.log(person.firstName);
-person.firstName = "Ma";
-console.log(person.firstName);
-person.firstName = "Maximilian";
-console.log(person.firstName);
+const numberMap = new MyMap<number>();
+numberMap.setItem('apples', 5);
+numberMap.setItem('bananas', 10);
+numberMap.printMap();
+
+const stringMap = new MyMap<string>();
+stringMap.setItem('name', "Max");
+stringMap.setItem('age', "27");
+stringMap.printMap();
